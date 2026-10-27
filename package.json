@@ -1,0 +1,9 @@
+{
+  "name": "kiddos",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "serve": "npx serve@14 -l 4173 ."
+  }
+}

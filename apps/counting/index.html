@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Counting</title>
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../icons/icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ff7a59">
+<link rel="stylesheet" href="../../shared/ui.css">
+<style>
+  .levels { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .lvl { width: 52px; height: 52px; border-radius: 50%; border: 3px solid var(--line); background: #fff; font-size: 1.3rem; font-weight: 800; cursor: pointer; }
+  .lvl.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .lvl:disabled { opacity: .35; }
+  .dots { display: flex; gap: 8px; justify-content: center; margin: 8px 0 16px; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--line); }
+  .dot.done { background: var(--good); }
+  .prompt { text-align: center; font-size: 2rem; font-weight: 800; margin: 0 0 12px; }
+  .objects { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; min-height: 160px; align-content: center; padding: 8px; }
+  .obj { font-size: 3.2rem; width: 76px; height: 76px; border-radius: 20px; border: 3px solid transparent; background: #fff; cursor: pointer; }
+  .objects.dense .obj { font-size: 2.2rem; width: 58px; height: 58px; }
+  .obj.counted { border-color: var(--good); background: #e8fbef; }
+  .count-badge { font-size: 1.1rem; font-weight: 800; color: var(--good); display: block; }
+  .choices { display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .choice { min-width: 130px; min-height: 130px; border-radius: 28px; border: 0; background: #3b82f6; color: #fff; font-size: 4rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 0 rgba(0,0,0,.15); }
+  .choice:active { transform: translateY(4px); }
+  .choice.wrong { background: #cfd3e0; animation: shake .35s; }
+  .choice.right { background: var(--good); }
+  .groups { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .group { flex: 1 1 260px; max-width: 420px; background: #fff; border: 4px solid var(--line); border-radius: 28px; padding: 12px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; min-height: 180px; align-content: center; cursor: pointer; }
+  .group.wrong { border-color: #cfd3e0; opacity: .5; animation: shake .35s; }
+  .group.right { border-color: var(--good); background: #e8fbef; }
+  .group span { font-size: 2.2rem; }
+  .celebrate { text-align: center; padding: 40px 0; }
+  .celebrate .big { font-size: 6rem; }
+  .confetti { position: fixed; top: -2rem; font-size: 2rem; pointer-events: none; animation: fall 1.4s ease-in forwards; z-index: 60; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: .9; } }
+  @keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="btn ghost" href="../../" aria-label="Home">🏠</a>
+  <div class="title" id="title">Counting</div>
+  <div class="chip" id="stars">⭐ 0</div>
+</div>
+<div class="levels" id="levels"></div>
+<div class="dots" id="dots"></div>
+<main id="stage"></main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

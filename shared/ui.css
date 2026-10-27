@@ -1,0 +1,40 @@
+:root {
+  color-scheme: light;
+  --bg: #fff7e6;
+  --ink: #2b2d42;
+  --muted: #6b6f85;
+  --card: #ffffff;
+  --accent: #ff7a59;
+  --good: #2ecc71;
+  --line: #ffe0b2;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); }
+body {
+  min-height: 100vh;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  user-select: none; -webkit-user-select: none; touch-action: manipulation;
+  overscroll-behavior: none;
+}
+h1, h2, h3 { margin: 0 0 .5rem; }
+.muted { color: var(--muted); }
+.topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.topbar .title { flex: 1; font-size: 1.6rem; font-weight: 800; }
+.btn {
+  min-height: 56px; padding: 0 24px; border: 0; border-radius: 16px;
+  background: var(--accent); color: #fff; font-size: 1.2rem; font-weight: 700; cursor: pointer;
+}
+.btn.ghost { background: #fff; color: var(--ink); border: 2px solid var(--line); }
+.btn:active { transform: scale(.97); }
+.chip { background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 1.3rem; font-weight: 800; }
+.gear {
+  position: fixed; right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom));
+  width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--line); background: #fff;
+  font-size: 1.5rem; opacity: .55; cursor: pointer;
+}
+.gear.holding { opacity: 1; background: var(--line); }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: grid; place-items: center; padding: 16px; z-index: 50; }
+.modal-box { background: #fff; border-radius: 20px; padding: 20px; width: min(520px, 100%); max-height: 90vh; overflow: auto; user-select: text; -webkit-user-select: text; }
+.field { width: 100%; font: inherit; font-size: 1.1rem; padding: 10px; border: 2px solid var(--line); border-radius: 12px; margin-bottom: 8px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }

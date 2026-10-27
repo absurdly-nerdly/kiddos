@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiddos</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ff7a59">
+<link rel="stylesheet" href="shared/ui.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+  .tile {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    min-height: 220px; border-radius: 28px; color: #fff; text-decoration: none; font-weight: 800;
+    box-shadow: 0 6px 0 rgba(0,0,0,.15);
+  }
+  .tile:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,.15); }
+  .tile .emoji { font-size: 4.5rem; }
+  .tile .name { font-size: 1.8rem; }
+  .tile .stars { font-size: 1.2rem; background: rgba(255,255,255,.25); padding: 4px 14px; border-radius: 999px; }
+</style>
+</head>
+<body data-hub="true">
+<div class="topbar"><div class="title">Let's play!</div></div>
+<main id="grid" class="grid"></main>
+<script type="module">
+import { APPS } from './shared/apps.js';
+import { progress, requestPersistence } from './shared/progress.js';
+import { mountParentGear } from './shared/parent.js';
+import { registerSW } from './shared/sw-register.js';
+
+const grid = document.getElementById('grid');
+for (const app of APPS) {
+  const a = document.createElement('a');
+  a.className = 'tile';
+  a.href = app.path;
+  a.style.background = app.color;
+  const stars = progress.load(app.id).stars;
+  a.innerHTML = `<span class="emoji">${app.emoji}</span><span class="name">${app.title}</span><span class="stars">⭐ ${stars}</span>`;
+  grid.append(a);
+}
+mountParentGear();
+requestPersistence();
+registerSW();
+</script>
+</body>
+</html>
